@@ -1,14 +1,18 @@
 // Author: Samuel Kebadu
+// G01053440
 
 
+// importing both standard IO and standard boolean datatype
 #include <stdio.h>
 #include <stdbool.h>
+
+//Declaring UDF in memory before main
 int get_input();
 void display(int val);
 
-
 int main(){
-	int why = get_input();
+	int input = get_input();
+	int why = input;
 	display(why);
 	int temp =0;
 	do{
@@ -16,12 +20,13 @@ int main(){
 		why = why/10;
 	}while(why > 0);
 	if(temp%9 == 0)
-		printf("%d is divisible by 9\n",why);
+		printf("%d is divisible by 9\n",input);
 	else
-		printf("%d is not divisible by 9\n",why);
+		printf("%d is not divisible by 9\n",input);
 	return 0;
 }
 
+// gets user input value
 int get_input(){
 	int out;
 	bool good = false;
@@ -32,10 +37,11 @@ int get_input(){
 			good = true;
 		else
 			printf("number not in range, please try again.\n");
-	}while(good = false);
+	}while(good == false);
 	return out;
 }
 
+// displays each digit starting from right
 void display(int val){
 	do{
 		printf("%d\n",val%10);
