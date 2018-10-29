@@ -10,7 +10,7 @@ char *getDateAndTime();
 int getInteger();
 
 int main(){
-    int my_int;
+	int my_int;
 	printf("Today's	date and time: %s\n",getDateAndTime());
 	my_int = getInteger();
 	printf("number is %d \n",my_int);
@@ -29,6 +29,6 @@ char *getDateAndTime()
 {
 	time_t	t;
 	time(&t);
-	printf("time(): %ld\n", long(t));
+	printf("time(): %ld\n", (long)t);
 	return	ctime(&t);
 }
