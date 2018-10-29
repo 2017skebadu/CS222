@@ -10,7 +10,7 @@ char *getDateAndTime();
 int getInteger();
 
 int main(){
-	printf("Hello, World!\n");
+	printf("Today's	date and time: %s\n",getDateAndTime());
 	printf("number is %d \n",getInteger());
 }
 
@@ -21,4 +21,11 @@ int getInteger(){
 	fgets(buffer,8,stdin);
 	i = atoi(buffer);
 	return i;
+}
+
+char *getDateAndTime()
+{
+	time_t	t;
+	time(&t);
+	return	ctime(&t);
 }
