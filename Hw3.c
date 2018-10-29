@@ -29,6 +29,6 @@ char *getDateAndTime()
 {
 	time_t	t;
 	time(&t);
-	printf("time(): %s\n", t);
+	printf("time(): %ld\n", long(t));
 	return	ctime(&t);
 }
