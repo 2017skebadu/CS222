@@ -81,8 +81,8 @@ char *convert_to_hex(int value) {
 		hexadecimalNumber[i++]= temp;
 		quotient = quotient / 16;
 	}
-	char hexreturn[i-1];
-	for(j=i-1,j>0)
+	char *hexreturn;
+	for(j=i-1;j>0;j--)
 		hexreturn[i-j-1] = hexadecimalNumber[j];
 	return hexreturn;
 }
@@ -92,10 +92,10 @@ char *convert_to_oct(int value) {
 	int length = ((sizeof(int)*8)+2)/3, quo;
 	oct_value[length] = '\0';
 	char digit_value;
-	while(length>0) {
+	for(int i=0;i<length;i++) {
 		quo = value%8;
 		digit_value = (char)(quo+48);
-		oct_value[--length] = digit_value;
+		oct_value[i] = digit_value;
 		value /= 8;
 	}
 	return oct_value;
