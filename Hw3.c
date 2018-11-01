@@ -67,18 +67,24 @@ char *getDateAndTime()
 }
 
 char *convert_to_hex(int value) {
-	char* hex_value = (char*)malloc((sizeof(int)*2)+1);
-	int length = sizeof(int)*2, quo;
-	hex_value[length] = '\0';
-	char digit_value;
-	while(length>0) {
-		quo = value%16;
-		if(quo<10) digit_value = (char)(quo+48);
-		else digit_value = (char)(quo+55);
-		hex_value[--length] = digit_value;
-		value /= 16;
+	long int decimalNumber,quotient;
+	int i=1,j,temp;
+	char hexadecimalNumber[100];
+	quotient = value;
+	while (quotient!=0){
+		temp = quotient % 16;
+		//Convert integer into character
+		if( temp < 10)
+			temp =temp + 48;
+		else
+			temp = temp + 55;
+		hexadecimalNumber[i++]= temp;
+		quotient = quotient / 16;
 	}
-	return hex_value;
+	char hexreturn[i-1];
+	for(j=i-1,j>0)
+		hexreturn[i-j-1] = hexadecimalNumber[j];
+	return hexreturn;
 }
 
 char *convert_to_oct(int value) {
@@ -106,3 +112,4 @@ char *convert_to_bin(int value) {
 	}
 	return bin_value;
 }
+
