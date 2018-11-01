@@ -10,23 +10,32 @@ char *getDateAndTime();
 int getInteger();
 
 int main(){
-    int my_int;
-    char write;
+	int my_int;
+	char write;
+	FILE *file;
 	printf("Today's	date and time: %s\n",getDateAndTime());
 	my_int = getInteger();
 	if(my_int == -1)
-		break;
+		return 0;
 	printf("number is %d \n",my_int);
-	printf("Save to a file? (y/n) (default: N): ")
+	printf("Save to a file? (y/n) (default: N): ");
 	scanf("%c", &write);
 	if(write == 'y'){
-	    string fname;
-	    printf("Enter file name: ");
-	    scanf("%s", fname);
-        file = fopen(fname, "w");
-        fprintf(file,"%d", my_int);
-        fclose(file);
+		char fname[100];
+		printf("Enter file name: ");
+		scanf("%s", &fname);
+		file = fopen(fname, "w");
+		printf("opened");
+		if(file == NULL){
+			printf("ERROR!");
+			fclose(file);
+			exit(1);
+		}
+        	fprintf(file,"%d", my_int);
+        	fclose(file);
+		exit(0);
 	}
+	return 0;
 }
 
 int getInteger(){
