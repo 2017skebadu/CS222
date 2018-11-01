@@ -8,16 +8,24 @@
 
 char *getDateAndTime();
 int getInteger();
+char *convert_to_hex();
+char *convert_to_oct();
+char *convert_to_bin();
 
 int main(){
 	int my_int;
 	char write;
 	FILE *file;
+	char username[100];
 	printf("Today's	date and time: %s\n",getDateAndTime());
 	my_int = getInteger();
+	printf("Name: ");
+	scanf("%s", &username);
 	if(my_int == -1)
 		return 0;
-	print(convert_to_hex(my_int)
+	printf("Hex: %s\n",convert_to_hex(my_int));
+	printf("Octal: %s\n",convert_to_oct(my_int));
+	printf("binary: %s\n",convert_to_bin(my_int));
 	printf("number is %d \n",my_int);
 	printf("Save to a file? (y/n) (default: N): ");
 	scanf("%c", &write);
@@ -58,7 +66,7 @@ char *getDateAndTime()
 	return	ctime(&t);
 }
 
-char* convert_to_hex(int value) {
+char *convert_to_hex(int value) {
 	char* hex_value = (char*)malloc((sizeof(int)*2)+1);
 	int length = sizeof(int)*2, quo;
 	hex_value[length] = '\0';
@@ -73,7 +81,7 @@ char* convert_to_hex(int value) {
 	return hex_value;
 }
 
-char* convert_to_oct(int value) {
+char *convert_to_oct(int value) {
 	char* oct_value = (char*)malloc((((sizeof(int)*8)+2)/3)+1);
 	int length = ((sizeof(int)*8)+2)/3, quo;
 	oct_value[length] = '\0';
@@ -87,7 +95,7 @@ char* convert_to_oct(int value) {
 	return oct_value;
 }
 
-char* convert_to_bin(int value) {
+char *convert_to_bin(int value) {
 	char* bin_value = (char*)malloc((sizeof(int) * 8)+1);
 	int length = sizeof(int) * 8;
 	bin_value[length] = '\0';
