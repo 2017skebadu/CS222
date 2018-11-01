@@ -17,6 +17,7 @@ int main(){
 	my_int = getInteger();
 	if(my_int == -1)
 		return 0;
+	print(convert_to_hex(my_int)
 	printf("number is %d \n",my_int);
 	printf("Save to a file? (y/n) (default: N): ");
 	scanf("%c", &write);
@@ -55,4 +56,45 @@ char *getDateAndTime()
 	time(&t);
 	printf("time(): %ld\n", (long)t);
 	return	ctime(&t);
+}
+
+char* convert_to_hex(int value) {
+	char* hex_value = (char*)malloc((sizeof(int)*2)+1);
+	int length = sizeof(int)*2, quo;
+	hex_value[length] = '\0';
+	char digit_value;
+	while(length>0) {
+		quo = value%16;
+		if(quo<10) digit_value = (char)(quo+48);
+		else digit_value = (char)(quo+55);
+		hex_value[--length] = digit_value;
+		value /= 16;
+	}
+	return hex_value;
+}
+
+char* convert_to_oct(int value) {
+	char* oct_value = (char*)malloc((((sizeof(int)*8)+2)/3)+1);
+	int length = ((sizeof(int)*8)+2)/3, quo;
+	oct_value[length] = '\0';
+	char digit_value;
+	while(length>0) {
+		quo = value%8;
+		digit_value = (char)(quo+48);
+		oct_value[--length] = digit_value;
+		value /= 8;
+	}
+	return oct_value;
+}
+
+char* convert_to_bin(int value) {
+	char* bin_value = (char*)malloc((sizeof(int) * 8)+1);
+	int length = sizeof(int) * 8;
+	bin_value[length] = '\0';
+	while(length>0)
+	{
+		bin_value[--length] = (char)((value%2)+48);
+		value >>= 1;
+	}
+	return bin_value;
 }
