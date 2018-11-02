@@ -102,14 +102,16 @@ char *convert_to_oct(int value) {
 }
 
 char *convert_to_bin(int value) {
-	char* bin_value = (char*)malloc((sizeof(int) * 8)+1);
-	int length = sizeof(int) * 8;
-	bin_value[length] = '\0';
-	while(length>0)
-	{
-		bin_value[--length] = (char)((value%2)+48);
-		value >>= 1;
+	int remainder,quotient;
+	int binNumber[100], i=1,j;
+	quotient = value;
+	while(quotient!=0){
+		binNumber[i++]= quotient % 2;
+		quotient = quotient / 2;
 	}
-	return bin_value;
+	char *binreturn;
+	for(j=i-1;j>0;j--)
+		binreturn[i-j-1] = binNumber[j];
+	return binreturn;
 }
 
